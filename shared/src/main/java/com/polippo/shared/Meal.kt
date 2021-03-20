@@ -1,4 +1,4 @@
-package com.polippo.wearbootcamp03
+package com.polippo.shared
 
 data class Meal(
     val title: String,

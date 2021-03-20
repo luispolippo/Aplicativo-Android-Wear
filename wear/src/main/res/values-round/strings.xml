@@ -1,3 +1,5 @@
 <resources>
     <string name="hello_world">Hello Round World!</string>
+    <string name="calories">%1$d calories</string>
+    <string name="starred_meal">Meal Starred!</string>
 </resources>

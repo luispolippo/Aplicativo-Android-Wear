@@ -3,6 +3,7 @@ package com.polippo.wearbootcamp03
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.polippo.shared.Meal
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
