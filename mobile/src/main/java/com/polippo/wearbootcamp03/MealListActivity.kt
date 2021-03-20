@@ -3,12 +3,12 @@ package com.polippo.wearbootcamp03
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.polippo.shared.Meal
 import kotlinx.android.synthetic.main.activity_meal.*
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.wearable.Node
 import com.google.android.gms.wearable.Wearable
 import com.google.gson.Gson
+import com.polippo.sharedlib.Meal
 
 class MealListActivity : AppCompatActivity(), MealListAdapter.Callback, GoogleApiClient.ConnectionCallbacks {
 
@@ -31,7 +31,7 @@ class MealListActivity : AppCompatActivity(), MealListAdapter.Callback, GoogleAp
         client.connect()
     }
 
-    override fun mealClicked(meal: Meal) {
+    override fun mealClicked(meal: com.polippo.sharedlib.Meal) {
         val gson = Gson()
         connectedNode?.forEach{ node ->
             val bytes = gson.toJson(meal).toByteArray()
@@ -42,6 +42,11 @@ class MealListActivity : AppCompatActivity(), MealListAdapter.Callback, GoogleAp
     override fun onConnected(p0: Bundle?) {
         Wearable.NodeApi.getConnectedNodes(client).setResultCallback {
             connectedNode = it.nodes
+
+            Wearable.DataApi.addListener(client){ data ->
+                val meal = Gson().fromJson(String(data[0].dataItem.data), Meal::class.java)
+                adapter?.updateMeal(meal)
+            }
         }
     }
 

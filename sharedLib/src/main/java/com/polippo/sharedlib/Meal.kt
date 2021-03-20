@@ -1,4 +1,4 @@
-package com.polippo.shared
+package com.polippo.sharedlib
 
 data class Meal(
     val title: String,

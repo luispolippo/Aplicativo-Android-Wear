@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.polippo.shared.Meal
 import kotlinx.android.synthetic.main.adapter_meal.view.*
 
 class MealListAdapter(
-    private val meals: MutableList<Meal>,
+    private val meals: MutableList<com.polippo.sharedlib.Meal>,
     private val callback: Callback?
     ): RecyclerView.Adapter<MealListAdapter.MealViewHolder>() {
 
@@ -28,7 +27,7 @@ class MealListAdapter(
         }
     }
 
-    fun updateMeal(meal: Meal){
+    fun updateMeal(meal: com.polippo.sharedlib.Meal){
         for((index, value) in meals.withIndex()){
             if(value.title == meal.title){
                 meals[index] = meal
@@ -42,7 +41,7 @@ class MealListAdapter(
     inner class MealViewHolder(view: View): RecyclerView.ViewHolder(view)
 
     interface Callback{
-        fun mealClicked(meal: Meal)
+        fun mealClicked(meal: com.polippo.sharedlib.Meal)
     }
 
 }
